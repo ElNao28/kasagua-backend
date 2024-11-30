@@ -9,11 +9,7 @@ export class ParametersService {
   constructor(@InjectRepository(Parameter)private readonly parametersRepository:Repository<Parameter>){}
   async changeValueSensor(createParameterDto: CreateParameterDto) {
     try {
-      const foundParameter = await this.parametersRepository.findOne({
-        where:{
-          id:1
-        }
-      });
+      const foundParameter = await this.parametersRepository.findOneBy({id:1});
 
       if(foundParameter){
         this.parametersRepository.update(foundParameter.id,createParameterDto);
