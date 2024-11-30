@@ -33,7 +33,24 @@ export class ParametersService {
     }
   }
 
-  findAll() {
-    return `This action returns all parameters`;
+  async getParameters() {
+    try {
+      const foundParameters = await this.parametersRepository.findOneBy({id:1});
+      if(foundParameters){
+        return{
+          message:'Exito',
+          status:HttpStatus.OK,
+          response: foundParameters
+        }
+      }
+      else{
+        return{
+          message:'No se encontró el parámetro',
+          status:HttpStatus.NOT_FOUND
+        }
+      }
+    } catch (error) {
+      throw new HttpException('A ocurrido un error',HttpStatus.BAD_GATEWAY);
+    }
   }
 }

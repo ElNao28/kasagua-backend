@@ -14,6 +14,6 @@ export class ParametersController {
 
   @Get()
   findAll() {
-    return this.parametersService.findAll();
+    return this.parametersService.getParameters();
   }
 }
