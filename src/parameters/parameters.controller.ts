@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe, UsePipes } from '@nestjs/common';
 import { ParametersService } from './parameters.service';
 import { CreateParameterDto } from './dto/create-parameter.dto';
 import { UpdateParameterDto } from './dto/update-parameter.dto';
@@ -7,6 +7,7 @@ import { UpdateParameterDto } from './dto/update-parameter.dto';
 export class ParametersController {
   constructor(private readonly parametersService: ParametersService) {}
 
+  @UsePipes(new ValidationPipe())
   @Post()
   create(@Body() createParameterDto: CreateParameterDto) {
     return this.parametersService.create(createParameterDto);
